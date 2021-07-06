@@ -1,0 +1,27 @@
+{% extends 'accounts/base_sign.html' %}
+
+{% block title %}Create an Account{% endblock title %}
+
+{% block  content %}
+
+<div class="container-form">
+    <div class="header">
+        <h1>Get registered</h1>
+    </div>
+    <div class="myform">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {% for field in  form %}
+              {{field}}
+            {% endfor %}
+            <button class="primary-btn" type="submit">SUBMIT</button>
+        </form>
+        <hr>
+        <span class="subtitle">Already have an account? <a href="{% url 'login' %}">Login</a></span>
+    </div>
+    <div class="myfooter">
+        <span class="subtitle"><p>Final Year Project by Ibeh Ebubechukwu David © 2021</p></span>
+    </div>
+    </div>
+
+{% endblock %}

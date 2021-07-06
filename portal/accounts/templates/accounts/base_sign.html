@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock%}</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="left-pane">
+        <div class="logo">
+            <img src="{% static '/img/logo.png' %}">
+            <h1>Student-Supervisor Allocation Portal</h1>
+        </div>
+    </div>
+    <div class="right-pane">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="message">
+                {{ message}}
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'accounts/base_sign.html' %}
+{% load static %}
+
+{% block title %}Logout{% endblock title %}
+
+{% block content %}
+<div class="container-form">
+<div class="header">
+    <h1>Log out</h1>
+</div>
+<div class="middle">
+    <img class="success" src = "{% static 'img/icon/success_icon.png' %}">
+    <p>You've logged out successfully</p>
+</div>
+<div class="myform">
+    <form action=" {% url 'login' %} "> 
+        <button class="secondary-btn" type="submit">LOGIN AGAIN</button>
+    </form>
+</div>
+<div class="myfooter">
+    <span class="subtitle"><p>Final Year Project by Ibeh Ebubechukwu David © 2021</p></span>
+</div>
+</div>
+{% endblock content %}

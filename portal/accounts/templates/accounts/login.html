@@ -1,0 +1,27 @@
+{% extends 'accounts/base_sign.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="container-form">
+<div class="header">
+    <h1>Welcome</h1>
+</div>
+<div class="myform">
+    <form method="POST" action="#" class="loginform">
+        {% csrf_token %}
+        {{form}}
+        <!-- <input type="email" placeholder="Email Address" name="Email">
+        <input type="password" placeholder="Password" name="Password"> -->
+        <button class="primary-btn" type="submit">LOGIN</button>
+    </form>
+    <form action=" {% url 'sign_up' %} "> 
+        <span class="subtitle"><p>Don’t have an account?</p></span>
+        <button class="secondary-btn" type="submit">CREATE AN ACCOUNT</button>
+    </form>
+</div>
+<div class="myfooter">
+    <span class="subtitle"><p>Final Year Project by Ibeh Ebubechukwu David © 2021</p></span>
+</div>
+</div>
+{% endblock content %}

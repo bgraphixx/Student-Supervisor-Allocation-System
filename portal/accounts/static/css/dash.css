@@ -1,0 +1,128 @@
+body{
+    background: #F2F7F5;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 72px;
+    margin-right: 72px;
+}
+h2{
+    float: left;
+    font-family: Fredoka One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    line-height: 58px;
+    color: #00473E;
+}
+h3{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 29px;
+    text-transform: uppercase;
+}
+.hero-div p{
+    color: #F2F7F5 !important;
+}
+p{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 29px;
+    color: #000000;
+    margin: 0px;
+}
+.profile a{
+    color: #00473E;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 29px;
+}
+.middle{
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    height: 500px;
+}
+.left-pane{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+    margin-right: 0px;
+}   
+.right-pane{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+}
+.hero-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background: #00473E;
+    border-radius: 10px;
+    color: white !important;
+    padding: 20px;
+}
+.hero-div h2{
+    font-family: Fredoka One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: white;
+    padding: 0px;
+    margin: 0px;
+}
+.dash-items{
+    display: flex;
+    flex-direction: row;
+    background: #FAAE2B;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.option{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.option img{
+    margin-right: 20px;
+}
+.btn-1,.btn-2,.btn-3,.btn-4{
+    background: #00473E;
+    border-radius: 8.11024px;
+    padding: 10px 20px;
+}
+.btn-1 a,.btn-2 a,.btn-3 a,.btn-4 a{
+    font-family: Fredoka One;
+    color: #F2F7F5 !important;
+    text-align: center;
+    text-decoration: none !important;
+}
+.footer{
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.subtitle{
+    font-family: Source Code Pro;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 23px;
+    text-align: center;
+    color: #00473E;
+}

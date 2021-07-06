@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supervisor Dashboard</title>
+    <link type="text/css" rel="stylesheet" href="{% static '/css/dash.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>Supervisor Dashboard</h2>
+    </div>
+    <div class="middle">
+        <div class="left-pane">
+            <div class = "img-div">
+                <img src="{% static '/img/supervisor-avatar.png' %}">
+            </div>
+            <div class = "profile">
+                <h3>Supervisors Name</h3>
+                <p>name@email.com</p>
+                <p>Staff Level</p>
+                <p>Computer Science</p>
+                <p>st17023176</p>
+                <a href="">Edit Profile</a><br>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+        <div class="right-pane">
+            <div class="hero-div">
+                <h2>Welcome</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur vel ducimus ab corrupti ipsum nesciunt mollitia ut quasi sunt. Placeat nam dolores, repellat eos laborum eligendi est corporis aliquam inventore veritatis aperiam cum illo ad explicabo unde blanditiis minima quia officia numquam eius impedit laboriosam error? Maxime ab deleniti.</p>
+            </div>
+            <div class="dash-items">
+                <div class="option">
+                    <img src="{% static '/img/icon/set_icon.png' %}">
+                    <p>Set and rank your project topic area of interest </p>
+                </div>
+                <div class="btn-1"><a href="#">GO</a></div>
+            </div>
+            <div class="dash-items">
+                <div class="option">
+                    <img src="{% static '/img/icon/rank_topic_icon.png' %}">
+                    <p>Rank available students</p>
+                </div>
+                <div class="btn-2"><a href="#">GO</a></div>
+            </div>
+            <div class="dash-items">
+                <div class="option">
+                    <img src="{% static '/img/icon/profile_icon.png' %}">
+                    <p>Submit profile for allocation</p>
+                </div>
+                <div class="btn-3"><a  href="#">GO</a></div>
+            </div>
+            <div class="dash-items">
+                <div class="option">
+                    <img src="{% static '/img/icon/allocated_student_icon.png' %}">
+                    <p>View allocated students</p>
+                </div>
+                <div class="btn-4"><a href="#">GO</a>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="subtitle">Final Year Project by Ibeh Ebubechukwu David © 2021</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
