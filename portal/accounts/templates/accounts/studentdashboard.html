@@ -17,11 +17,11 @@
                 <img src="{% static '/img/student-avatar.png' %}">
             </div>
             <div class = "profile">
-                <h3>Student Name</h3>
-                <p>name@email.com</p>
+                <h3>{{ user.first_name }} {{user.last_name}}</h3>
+                <p>{{ user.email }}</p>
                 <p>400 Level</p>
                 <p>Computer Science</p>
-                <p>17cg023176</p>
+                <p>{{ user.username }}</p>
                 <a href="">Edit Profile</a><br>
                 <a href="{% url 'logout' %}">Logout</a>
             </div>
