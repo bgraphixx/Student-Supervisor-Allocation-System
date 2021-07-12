@@ -1,0 +1,12 @@
+{% extends "accounts/base_rank.html" %}
+{% load static %}
+{% block title %}Rank Project Topic Area of Interest{% endblock title %}
+{% block content %}
+<div>
+    <form action="" method="POST" class="myform">
+        {% csrf_token %}
+        {{ areaform }}
+        <button class="primary-btn" type="submit">SUBMIT PREFERENCES</button>
+    </form>
+</div>
+{%  endblock content %}

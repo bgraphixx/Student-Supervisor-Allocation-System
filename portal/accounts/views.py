@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 #import django default form for user creation
-from .forms import CreateUserForm
+from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -55,5 +55,42 @@ def super_dashboard(request):
 
 @login_required
 def student_dashboard(request):
-    context = {}
+    areadb = AreaOfInterests.objects.filter(user=request.user).exists()
+    context = {
+         'areadb' : areadb
+    }
     return render(request, 'accounts/studentdashboard.html', context)
+
+@login_required
+def rankarea(request):
+    myuser = request.user
+    if request.method == 'POST':
+        areaform = AreaOfInterestsForm(request.POST)
+        if areaform.is_valid():
+            arearank = areaform.save(commit=False)
+            arearank.user = myuser
+            messages.success(request, f'Area of Interest saved!')
+            arearank.save()
+            return redirect('student_dashboard')
+    else:
+        areaform = AreaOfInterestsForm()
+    context = {
+        'areaform': areaform,
+    }
+    return render(request, 'accounts/rank_area.html', context)
+
+@login_required
+def updaterankarea(request, id):
+    myuser = request.user
+    myarearank = AreaOfInterests.objects.get(user=myuser)
+    areaform = AreaOfInterestsForm(instance=myarearank)
+    if request.method == 'POST':
+        areaform = AreaOfInterestsForm(request.POST, instance=myarearank)
+        if areaform.is_valid():
+            messages.success(request, f'Area of Interest has been updated!')
+            areaform.save()
+            return redirect('student_dashboard')
+    context = {
+        'areaform': areaform
+    }
+    return render(request, 'accounts/rank_area.html', context)

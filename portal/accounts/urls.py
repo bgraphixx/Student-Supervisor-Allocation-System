@@ -10,4 +10,6 @@ urlpatterns = [
     path('supervisorinfo/', views.supervisor_info, name='supervisor_info'),
     path('dashboard/student/', views.student_dashboard, name='student_dashboard'),
     path('dashboard/supervisor/', views.super_dashboard, name='super_dashboard'),
+    path('rank/areaofinterest/', views.rankarea, name='rank_area'),
+    path('rank/areaofinterest/', views.updaterankarea, name='up_rank_area'),
 ]

@@ -43,6 +43,8 @@ body{
     height: 100%;
     margin: auto;
 }
+
+
 .logo h1{
     color: #FAAE2B;
     font-family: Fredoka One;
@@ -148,4 +150,17 @@ body{
     line-height: 23px;
     text-align: center;
     color: #00473E;
+}
+.my-container{
+    display: flex;
+    margin: 72px;
+}
+.header h1{
+    color: #00473E;
+    font-family: Fredoka One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 44px;
+    text-align: center;
 }

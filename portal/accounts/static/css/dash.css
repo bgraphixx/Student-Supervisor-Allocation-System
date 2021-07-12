@@ -126,3 +126,100 @@ p{
     text-align: center;
     color: #00473E;
 }
+.message{
+    display: flex;
+    align-items: center;
+    background-color: #00473E;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    color: #F2F7F5;
+    border-radius: 10px;
+}
+.myform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.myform input{
+    width: 551px;
+    height: 60px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 20px 15px;
+    margin-bottom: 18px;
+/* for the text */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    color: #000000;
+}
+.myform select{
+    width: 551px;
+    height: 60px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 20px 15px;
+    margin-bottom: 18px;
+/* for the text */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 29px;
+    color: #000000;
+}
+.primary-btn{
+    display: block;
+    width: 551px;
+    height: 60px;
+    text-align: center;
+    background-color: #FAAE2B;
+    border: 0px;
+    padding: auto;
+    border-radius: 10px;
+    /* for the text */
+    color: #00473E;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+}
+.secondary-btn{
+    display: block;
+    width: 551px;
+    height: 60px;
+    text-align: center;
+    background-color:#00473E !important;
+    border: 0px;
+    padding: auto;
+    border-radius: 10px;
+    /* for the text */
+    color:#FAAE2B;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 29px;
+}
+.myform label{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 10px;
+}
