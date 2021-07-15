@@ -36,6 +36,15 @@ p{
     color: #000000;
     margin: 0px;
 }
+label{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 10px;
+}
 .profile a{
     color: #00473E;
     font-family: Montserrat;
@@ -53,6 +62,9 @@ p{
 .left-pane{
     display: flex;
     flex-direction: column;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+    padding: 50px;
     width: 30%;
     height: 100%;
     margin-right: 0px;

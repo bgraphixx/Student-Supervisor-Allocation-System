@@ -91,6 +91,23 @@ body{
     width: 465px;
     height: 100%;
 }
+.formcontrol{
+    width: 551px;
+    height: 60px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 20px 15px;
+    margin-bottom: 18px;
+/* for the text */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 29px;
+    color: #000000;
+}
 .myform input{
     width: 551px;
     height: 60px;
@@ -104,7 +121,7 @@ body{
     font-family: Montserrat;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 29px;
     color: #000000;
 }

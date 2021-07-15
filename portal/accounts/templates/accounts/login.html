@@ -1,5 +1,7 @@
 {% extends 'accounts/base_sign.html' %}
 
+{% load static %}
+
 {% block title %}Login{% endblock title %}
 
 {% block content %}
@@ -8,7 +10,7 @@
     <h1>Welcome</h1>
 </div>
 <div class="myform">
-    <form method="POST" action="#" class="loginform">
+    <form method="POST" action="" class="loginform">
         {% csrf_token %}
         {{form}}
         <!-- <input type="email" placeholder="Email Address" name="Email">

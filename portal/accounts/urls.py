@@ -12,4 +12,5 @@ urlpatterns = [
     path('dashboard/supervisor/', views.super_dashboard, name='super_dashboard'),
     path('rank/areaofinterest/', views.rankarea, name='rank_area'),
     path('rank/areaofinterest/', views.updaterankarea, name='up_rank_area'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

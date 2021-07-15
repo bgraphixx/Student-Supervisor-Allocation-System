@@ -34,26 +34,40 @@ class AreaOfInterestsForm(ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta: 
         model = Profiles
-        fields = '__all__'
+        fields = ('user_type', 'gender')
         labels = {
             'user_type' : 'Are you a student, supervisor or adminstrator?',
             'gender' : 'What is your gender?',
+        }
+        widgets = {
+            'user_type': forms.Select(attrs={'class': 'formcontrol',}),
+            'gender': forms.Select(attrs={'class': 'formcontrol',})
         }
 
 class SupervisorForm(forms.ModelForm):
     class Meta: 
         model = Supervisors
-        fields = '__all__'
+        fields = ('staff_level', 'department')
         labels = {
             'staff_level' : 'What is your current position?',
             'department' : 'Which department do you belong to?',
+        }
+        widgets = {
+            'staff_level': forms.Select(attrs={'class': 'formcontrol',}),
+            'department': forms.Select(attrs={'class': 'formcontrol',})
         }
 
 class StudentForm(forms.ModelForm):
     class Meta: 
         model = Students
-        fields = '__all__'
+        fields = ('level', 'department', 'course')
         labels = {
-            'level' : 'What is your current position?',
+            'level' : 'What level are you in?',
             'department' : 'Which department do you belong to?',
+            'course': 'Choose programme:',
+        }
+        widgets = {
+            'level': forms.Select(attrs={'class': 'formcontrol',}),
+            'department': forms.Select(attrs={'class': 'formcontrol',}),
+            'course': forms.Select(attrs={'class': 'formcontrol',})
         }

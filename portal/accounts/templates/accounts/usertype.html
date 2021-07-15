@@ -8,18 +8,25 @@
 
 <div class="container-form">
     <div class="header">
-        <h1>Are you a student <br> or a Supervisor?</h1>
+        <h1>Complete your profile</h1>
     </div>
     <div class="myform">
-        <form action="#">
-            <div class="form-image">
+        <form action=" " method="POST" class="loginform">
+            {% csrf_token %}
+            {% for field in  pform%}
+              {{field.label_tag}}
+              <br>
+              {{field}}
+              <br>
+            {% endfor %}
+            <!-- <div class="form-image">
                 <img src="{% static '/img/student-avatar.png' %}">
                 <p>Student</p>
             </div>
             <div class="form-image">
                 <img src="{% static '/img/supervisor-avatar.png' %}">
                 <p>Supervisor</p>
-            </div>
+            </div> -->
             <button class="primary-btn" type="submit">NEXT</button>
         </form>
     </div>
