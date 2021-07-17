@@ -18,9 +18,22 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['first_name', 'last_name', 'email','username', 'password1', 'password2']
 
-class AreaOfInterestsForm(ModelForm):
+class StudentsAreaOfInterestsForm(ModelForm):
     class Meta:
-        model = AreaOfInterests
+        model = StudentsAreaOfInterests
+        fields = ('type', 'first_choice', 'second_choice', 'third_choice', 'fourth_choice', 'fifth_choice')
+        labels = {
+            'type' : 'What kind of project do you preferred?',
+            'first_choice' : 'First Choice Project Area',
+            'second_choice' : 'Second Choice Project Area',
+            'third_choice' : 'Third Choice Project Area',
+            'fourth_choice' : 'Fourth Choice Project Area',
+            'fifth_choice' : 'Fifth Choice Project Area',
+        }
+
+class SupervisorsAreaOfInterestsForm(ModelForm):
+    class Meta:
+        model = SupervisorsAreaOfInterests
         fields = ('type', 'first_choice', 'second_choice', 'third_choice', 'fourth_choice', 'fifth_choice')
         labels = {
             'type' : 'What kind of project do you preferred?',
@@ -70,4 +83,17 @@ class StudentForm(forms.ModelForm):
             'level': forms.Select(attrs={'class': 'formcontrol',}),
             'department': forms.Select(attrs={'class': 'formcontrol',}),
             'course': forms.Select(attrs={'class': 'formcontrol',})
+        }
+
+class AdministratorForm(forms.ModelForm):
+    class Meta: 
+        model = Administrators
+        fields = ('staff_level', 'department')
+        labels = {
+            'staff_level' : 'What is your current position?',
+            'department' : 'Which department do you belong to?',
+        }
+        widgets = {
+            'staff_level': forms.Select(attrs={'class': 'formcontrol',}),
+            'department': forms.Select(attrs={'class': 'formcontrol',})
         }

@@ -5,9 +5,11 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-
+from .models import *
+    
 # Create your views here.
 def index(request):
+    
     context = {}
     return render(request, 'accounts/index.html', context)
     
@@ -55,6 +57,12 @@ def usertype(request):
                 profile.user = myuser
                 profile.save()
                 return redirect('supervisor_info')
+            elif profile.user_type == 'Admin':
+                group = Group.objects.get(name='Administrators')
+                messages.success(request, 'Profile Completed')
+                profile.user = myuser
+                profile.save()
+                return redirect('admin_info')
         else:
             messages.error(request, 'Invalid input')                  
     else:
@@ -104,19 +112,43 @@ def supervisor_info(request):
     return render(request, 'accounts/supervisorinfo.html', context)
 
 @login_required
+def administrator_info(request):
+    myuser = request.user
+    if request.method == 'POST':
+        adinfoform = AdministratorForm(request.POST)
+        if adinfoform.is_valid():
+            adinfo = adinfoform.save(commit=False)
+            adinfo.staff = myuser
+            messages.success(request,'Successfully saved Administrator information!')
+            adinfo.save()
+            return redirect('admin_dashboard')
+    else:
+            adinfoform = AdministratorForm()
+
+    context = {
+        'adinfoform': adinfoform
+    }
+    return render(request, 'accounts/adminsinfo.html', context)
+
+@login_required
 def dashboard(request):
     myuser = request.user
     if myuser.groups.filter(name='Students'):
         return redirect('student_dashboard')
-    else:
+    elif myuser.groups.filter(name='Supervisors'):
         return redirect('super_dashboard')
+    else:
+        return redirect('admin_dashboard')
 
 @login_required
 def super_dashboard(request):
     myuser = request.user
-    superlevel = Supervisors.objects.get(staff=myuser).staff_level
-    superdepartment = Supervisors.objects.get(staff=myuser).department
+    mysupervisor = Supervisors.objects.get(staff=myuser)
+    superlevel = mysupervisor.staff_level
+    superdepartment = mysupervisor.department
+    areadb = SupervisorsAreaOfInterests.objects.filter(supervisor=mysupervisor).exists()
     context = {
+        'areadb': areadb,
         'superlevel': superlevel,
         'superdepartment': superdepartment,
     }
@@ -126,10 +158,11 @@ def super_dashboard(request):
 @login_required
 def student_dashboard(request):
     myuser = request.user
-    stlevel = Students.objects.get(student=myuser).level
-    stdepartment = Students.objects.get(student=myuser).department
-    stcourse = Students.objects.get(student=myuser).course
-    areadb = AreaOfInterests.objects.filter(user=myuser).exists()
+    mystudent = Students.objects.get(student=myuser)
+    stlevel = mystudent.level
+    stdepartment = mystudent.department
+    stcourse = mystudent.course
+    areadb = StudentsAreaOfInterests.objects.filter(student=mystudent).exists()
     context = {
         'areadb' : areadb,
         'stlevel': stlevel,
@@ -138,22 +171,41 @@ def student_dashboard(request):
     }
     return render(request, 'accounts/studentdashboard.html', context)
 
+
 @login_required
 def rankarea(request):
     myuser = request.user
-    if request.method == 'POST':
-        areaform = AreaOfInterestsForm(request.POST)
-        if areaform.is_valid():
-            arearank = areaform.save(commit=False)
-            arearank.user = myuser
-            messages.success(request, f'Area of Interest saved!')
-            arearank.save()
-            if myuser.groups.filter(name='Students'):
+    if myuser.groups.filter(name='Students'):
+        mystudent = Students.objects.get(student=myuser)
+        print(mystudent)
+        if request.method == 'POST':
+            areaform = StudentsAreaOfInterestsForm(request.POST)
+            if areaform.is_valid():
+                arearank = areaform.save(commit=False)
+                arearank.student = mystudent
+                messages.success(request, f'Area of Interest saved!')
+                arearank.save()
                 return redirect('student_dashboard')
-            else:
+        else:
+            areaform = StudentsAreaOfInterestsForm()
+
+    elif myuser.groups.filter(name='Supervisors'):
+        mysupervisor = Supervisors.objects.get(staff=myuser)
+        print(mysupervisor)
+        if request.method == 'POST':
+            areaform = SupervisorsAreaOfInterestsForm(request.POST)
+            if areaform.is_valid():
+                arearank = areaform.save(commit=False)
+                arearank.supervisor = mysupervisor
+                messages.success(request, f'Area of Interest saved!')
+                arearank.save()
                 return redirect('super_dashboard')
+        else:
+            areaform = StudentsAreaOfInterestsForm()  
+
     else:
-        areaform = AreaOfInterestsForm()
+        messages.success(request, f'You are not supervisor or student')
+        return redirect('login')    
     context = {
         'areaform': areaform,
     }
@@ -162,10 +214,10 @@ def rankarea(request):
 @login_required
 def updaterankarea(request, id):
     myuser = request.user
-    myarearank = AreaOfInterests.objects.get(user=myuser)
-    areaform = AreaOfInterestsForm(instance=myarearank)
+    myarearank = StudentsAreaOfInterests.objects.get(user=myuser)
+    areaform = StudentsAreaOfInterestsForm(instance=myarearank)
     if request.method == 'POST':
-        areaform = AreaOfInterestsForm(request.POST, instance=myarearank)
+        areaform = StudentsAreaOfInterestsForm(request.POST, instance=myarearank)
         if areaform.is_valid():
             messages.success(request, f'Area of Interest has been updated!')
             areaform.save()
@@ -174,3 +226,96 @@ def updaterankarea(request, id):
         'areaform': areaform
     }
     return render(request, 'accounts/rank_area.html', context)
+
+#Admin Links
+@login_required
+def admin_dashboard(request):
+    myuser = request.user
+
+    # initializing all tables
+    mystudents = Students.objects.all()
+    mysupervisors = Supervisors.objects.all()
+    unallocated_students = UnallocatedStudents.objects.all()
+    unallocated_supervisors = UnallocatedSupervisors.objects.all()
+
+    # User counts
+    unallocated_students_count  = unallocated_students.count()
+    unallocated_supervisors_count =  unallocated_supervisors.count()
+    mystudents_count = mystudents.count()
+    mysupervisors_count = mysupervisors.count()
+
+    # passing context to html template
+    context = {
+        'mystudents_count': mystudents_count,
+        'mysupervisors_count': mysupervisors_count,
+        'unallocated_supervisors_count': unallocated_supervisors_count,
+        'unallocated_students_count': unallocated_students_count,
+        'myuser': myuser
+     }
+    return render(request, 'accounts/admin/admin.html', context)
+
+@login_required
+def allocate(request):
+
+    context ={}
+    return render(request, 'accounts/admin/allocate.html', context)
+
+@login_required
+def allocate_results(request):
+
+    context ={}
+    return render(request, 'accounts/admin/allocate_results.html', context)
+
+@login_required
+def add_students(request):
+
+    context ={}
+    return render(request, 'accounts/admin/add_students.html', context)
+
+@login_required
+def add_supervisors(request):
+
+    context ={}
+    return render(request, 'accounts/admin/add_supervisors.html', context)
+
+@login_required
+def reg_deadline(request):
+
+    context ={}
+    return render(request, 'accounts/admin/reg_deadline.html', context)
+
+@login_required
+def total_students(request):
+    mystudents = Students.objects.all()
+
+    context ={
+        'mystudents' : mystudents
+    }
+    return render(request, 'accounts/admin/total_students.html', context)
+
+@login_required
+def total_supervisors(request):
+    mysupervisors = Supervisors.objects.all()
+
+    context ={
+        'mysupervisors' : mysupervisors
+    }
+    return render(request, 'accounts/admin/total_supervisors.html', context)
+
+@login_required
+def unallocated_students(request):
+
+    context ={}
+    return render(request, 'accounts/admin/unallocated_students.html', context)
+
+@login_required
+def unallocated_supervisors(request):
+
+    context ={}
+    return render(request, 'accounts/admin/total_supervisors.html', context)
+
+@login_required
+def set_contraints(request):
+
+    context ={}
+    return render(request, 'accounts/admin/set_contraints.html', context)

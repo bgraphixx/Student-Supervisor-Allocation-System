@@ -7,10 +7,16 @@ class ProfileAdmin(admin.ModelAdmin):
     search_fields = ("user", ) #Create a search box to search these fields 
     list_filter = ("user_type", "gender")
 
-class AreaOfInterestsAdmin(admin.ModelAdmin):
+class StudentsAreaOfInterestsAdmin(admin.ModelAdmin):
     ordering = ('id', )
-    list_display = ("user" , "type", "first_choice","second_choice","third_choice","fourth_choice","fifth_choice", ) #Set display in admin to list these columns
-    search_fields = ("user", ) #Create a search box to search these fields 
+    list_display = ("student" , "type", "first_choice","second_choice","third_choice","fourth_choice","fifth_choice", ) #Set display in admin to list these columns
+    search_fields = ("student", ) #Create a search box to search these fields 
+    list_filter = ("type", "first_choice","second_choice","third_choice","fourth_choice","fifth_choice",)
+
+class SupervisorsAreaOfInterestsAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ("supervisor" , "type", "first_choice","second_choice","third_choice","fourth_choice","fifth_choice", ) #Set display in admin to list these columns
+    search_fields = ("supervisor", ) #Create a search box to search these fields 
     list_filter = ("type", "first_choice","second_choice","third_choice","fourth_choice","fifth_choice",)
 
 class StudentsAdmin(admin.ModelAdmin):
@@ -24,16 +30,53 @@ class SupervisorsAdmin(admin.ModelAdmin):
     list_display = ("staff" , "staff_level", "department") #Set display in admin to list these columns
     search_fields = ("staff", ) #Create a search box to search these fields 
     list_filter = ("staff_level", "department")
-
-class AllocationAdmin(admin.ModelAdmin):
+    
+class AdministratorsAdmin(admin.ModelAdmin):
     ordering = ('id', )
-    list_display = ("student" , "status", "supervisor") #Set display in admin to list these columns
+    list_display = ("staff" , "staff_level", "department") #Set display in admin to list these columns
+    search_fields = ("staff", ) #Create a search box to search these fields 
+    list_filter = ("staff_level", "department")
+
+class AllocatedAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ("student", "supervisor") #Set display in admin to list these columns
     search_fields = ("student", "supervisor") #Create a search box to search these fields 
-    list_filter = ("status", )
+
+class StudentRankingAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ("student", "first_choice", "second_choice", "third_choice", "fourth_choice", "fifth_choice") #Set display in admin to list these columns
+    search_fields = ("student",) #Create a search box to search these fields 
+
+class SupervisorRankingAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ("supervisor", "first_choice", "second_choice", "third_choice", "fourth_choice", "fifth_choice") #Set display in admin to list these columns
+    search_fields = ("supervisor",) #Create a search box to search these fields 
+
+class UnallocatedStudentsAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ("student", ) #Set display in admin to list these columns
+    search_fields = ("student", ) #Create a search box to search these fields 
+
+class UnallocatedSupervisorsAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ("supervisor", ) #Set display in admin to list these columns
+    search_fields = ("supervisor", ) #Create a search box to search these fields 
+
+class SupervisorConstraintsAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ("professor","assoc_professor", "senior_lect", "lect_one", "lect_two", "assist") #Set display in admin to list these columns
+
 
 admin.site.register(Test)
 admin.site.register(Profiles, ProfileAdmin)
-admin.site.register(AreaOfInterests, AreaOfInterestsAdmin)
+admin.site.register(StudentsAreaOfInterests, StudentsAreaOfInterestsAdmin)
+admin.site.register(SupervisorsAreaOfInterests, SupervisorsAreaOfInterestsAdmin)
 admin.site.register(Students, StudentsAdmin)
 admin.site.register(Supervisors, SupervisorsAdmin)
-admin.site.register(Allocation, AllocationAdmin)
+admin.site.register(Administrators, AdministratorsAdmin)
+admin.site.register(StudentRanking, StudentRankingAdmin)
+admin.site.register(SupervisorRanking, SupervisorRankingAdmin)
+admin.site.register(UnallocatedStudents, UnallocatedStudentsAdmin)
+admin.site.register(UnallocatedSupervisors, UnallocatedSupervisorsAdmin)
+admin.site.register(Allocated, AllocatedAdmin)
+admin.site.register(SupervisorContraints, SupervisorConstraintsAdmin)

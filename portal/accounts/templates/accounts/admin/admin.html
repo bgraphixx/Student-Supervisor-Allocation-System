@@ -1,0 +1,103 @@
+{% extends "accounts/admin/base_admin.html" %}
+{% load static %}
+{% block title %}Admin Dashboard {% endblock title %}
+{% block content %}
+<div class="alert alert-primary mt-3 role="alert">
+        Hello <strong>{{ myuser.first_name }}</strong>, here's an overview of your administrative dashboard
+</div>
+<section>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Students</h5>
+          <p class="card-text">The number of successfully registered students are <strong> {{ mystudents_count }}</strong></p><br>
+          <a href="#" class="btn btn-primary">See Students List</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Supervisors</h5>
+          <p class="card-text">The number of successfully registered students are <strong>{{ mysupervisors_count }}</strong></p><br>
+          <a href="#" class="btn btn-primary">See Supervisors List</a>
+        </div>
+      </div>
+    </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Unallocated Students</h5>
+            <p class="card-text">The number of unallocated students who submitted their profile but are unallocated is <strong>{{ unallocated_students_count }}</strong></p>
+            <a href="#" class="btn btn-primary">See list</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Unallocated Supervisors</h5>
+            <p class="card-text">The number of unallocated supervisors who submitted their profile but are unallocated is <strong>{{ unallocated_supervisors_count}} </strong></p>
+            <a href="#" class="btn btn-primary">See list</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add Students</h5>
+            <p class="card-text">Register new students by uploading a CSV (Comma-Separated Values) file in the Upload Module</p>
+            <a href="#" class="btn btn-primary">Add Students</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add Supervisors</h5>
+            <p class="card-text">Register new supervisors by uploading a CSV (Comma-Separated Values) file in the Upload Module</p>
+            <a href="#" class="btn btn-primary">Add Supervisors</a>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+<hr>
+<section class="mb-3">
+  <h3>Allocation Module</h3>
+  <hr>
+  <div class="col-12 alert alert-warning" role="alert">
+    Set supervisor's constraints for all staff levels before running the algorithm
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Set Registration Deadline</h5>
+              <p class="card-text">Set the deadlines to complete and submit profiles for allocation to be displayed in Students and Supervisors Dashboard</p>
+              <a href="#" class="btn btn-primary">Set Constraints</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Set Supervisor Constraints</h5>
+              <p class="card-text">Set the amount of students each supervisor can have before Allocation</p>
+              <a href="#" class="btn btn-primary">Set Constraints</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Allocation</h5>
+              <p class="card-text">Check the allocation checklist and run the allocation algorithm</p><br>
+              <a href="#" class="btn btn-primary">Begin Allocation</a>
+            </div>
+          </div>
+        </div>
+  </div>
+</section>
+{% endblock %}
