@@ -97,3 +97,41 @@ class AdministratorForm(forms.ModelForm):
             'staff_level': forms.Select(attrs={'class': 'formcontrol',}),
             'department': forms.Select(attrs={'class': 'formcontrol',})
         }
+
+class SupervisorsConstraintForm(forms.ModelForm):
+    class Meta: 
+        model = SupervisorContraints
+        fields = ('professor','assoc_professor', 'senior_lect', 'lect_one', 'lect_two', 'assist')
+        labels = {
+            'professor' : 'Set Constraint for Professors:',
+            'assoc_professor' : 'Set Constraints for Associate Professors:',
+            'senior_lect' : 'Set Constraints for Senior Lecturers:',
+            'lect_one' : 'Set Constraints for Lecturer 1:',
+            'lect_two' : 'Set Constraints for Lecturer 2:',
+            'assist' : 'Set Constraints for Assistant Lecturers:',
+        }
+        widgets = {
+            'professor' : forms.NumberInput(attrs={'class': 'form-control',}),
+            'assoc_professor' : forms.NumberInput(attrs={'class': 'form-control',}),
+            'senior_lect' : forms.NumberInput(attrs={'class': 'form-control',}),
+            'lect_one' : forms.NumberInput(attrs={'class': 'form-control',}),
+            'lect_two' : forms.NumberInput(attrs={'class': 'form-control',}),
+            'assist' : forms.NumberInput(attrs={'class': 'form-control',}),
+        }
+
+class RegDeadlineForm(forms.ModelForm):
+    class Meta: 
+        model = RegDeadline
+        fields = ('area_of_interest','ranking', 'submit_profile', 'allocation_result')
+        labels = {
+            'area_of_interest' : 'Set deadline for Area of Interest:',
+            'ranking' : 'Set deadline for Ranking:',
+            'submit_profile' : 'Set deadline for Submitting profile:',
+            'allocation_result' : 'Set date to display allocation result:',
+        }
+        widgets = {
+            'area_of_interest' : forms.DateInput(attrs={'class': 'form-control',}),
+            'ranking' : forms.DateInput(attrs={'class': 'form-control',}),
+            'submit_profile' : forms.DateInput(attrs={'class': 'form-control',}),
+            'allocation_result' : forms.DateInput(attrs={'class': 'form-control',}),
+        }

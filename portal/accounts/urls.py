@@ -26,5 +26,5 @@ urlpatterns = [
     path('dashboard/admin/supervisors', views.total_supervisors, name='total_supervisors'),
     path('dashboard/admin/unallocated/students', views.unallocated_students, name='unallocated_students'),
     path('dashboard/admin/unallocated/supervisors', views.unallocated_supervisors, name='unallocated_supervisors'),
-    path('dashboard/admin/unallocated/students', views.set_contraints, name='set_contraints'),
+    path('dashboard/admin/add/constraints', views.set_constraints, name='set_constraints'),
 ]

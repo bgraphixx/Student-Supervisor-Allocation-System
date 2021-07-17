@@ -224,6 +224,14 @@ class SupervisorContraints(models.Model):
     class Meta:
         verbose_name_plural = 'Supervisor Constraints'
 
+class RegDeadline(models.Model):
+    area_of_interest = models.DateField(verbose_name='Area of Interest')
+    ranking = models.DateField(verbose_name='Ranking')
+    submit_profile = models.DateField(verbose_name='Submit Profile')
+    allocation_result = models.DateField(verbose_name='Allocation Result')
+    class Meta:
+        verbose_name_plural = 'Registration Deadlines'
+
 class Allocated(models.Model):
     student = models.OneToOneField(Students,  on_delete=models.CASCADE, null=False)
     supervisor = models.ForeignKey(Supervisors, on_delete=models.CASCADE, null=False)

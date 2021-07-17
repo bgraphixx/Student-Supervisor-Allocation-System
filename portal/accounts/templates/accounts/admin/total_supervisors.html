@@ -2,5 +2,29 @@
 {% load static %}
 {% block title %}Registered Supervisors{% endblock title %}
 {% block content %}
+<div class="text-center mt-5 mb-5">
+    <h3>Registered Supervisors</h3>
+</div>
+<div class="alert alert-primary mt-3 role="alert">
+    <strong>{{ mysupervisors_count }}{% if mysupervisors_count == 0 %} supervisor {% else %} supervisors {% endif %}</strong> have been successful added to the portal
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Staff Name</th>
+        <th scope="col">Level</th>
+        <th scope="col">Department</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for supervisor  in mysupervisors %}
+        <tr>
+            <td>{{ supervisor.staff }}</td>
+            <td>{{ supervisor.staff_level }}</td>
+            <td>{{ supervisor.department }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 
 {% endblock %}

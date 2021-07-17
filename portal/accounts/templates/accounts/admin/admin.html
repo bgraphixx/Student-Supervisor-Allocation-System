@@ -11,8 +11,8 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Total Students</h5>
-          <p class="card-text">The number of successfully registered students are <strong> {{ mystudents_count }}</strong></p><br>
-          <a href="#" class="btn btn-primary">See Students List</a>
+          <p class="card-text">The number of successfully registered students is <strong> {{ mystudents_count }}</strong></p><br>
+          <a href="{% url 'total_students' %}" class="btn btn-primary">See Students List</a>
         </div>
       </div>
     </div>
@@ -20,8 +20,8 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Total Supervisors</h5>
-          <p class="card-text">The number of successfully registered students are <strong>{{ mysupervisors_count }}</strong></p><br>
-          <a href="#" class="btn btn-primary">See Supervisors List</a>
+          <p class="card-text">The number of successfully registered students is <strong>{{ mysupervisors_count }}</strong></p><br>
+          <a href="{% url 'total_supervisors' %}" class="btn btn-primary">See Supervisors List</a>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
           <div class="card-body">
             <h5 class="card-title">Unallocated Students</h5>
             <p class="card-text">The number of unallocated students who submitted their profile but are unallocated is <strong>{{ unallocated_students_count }}</strong></p>
-            <a href="#" class="btn btn-primary">See list</a>
+            <a href="{% url 'unallocated_students' %}" class="btn btn-primary">See list</a>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
           <div class="card-body">
             <h5 class="card-title">Unallocated Supervisors</h5>
             <p class="card-text">The number of unallocated supervisors who submitted their profile but are unallocated is <strong>{{ unallocated_supervisors_count}} </strong></p>
-            <a href="#" class="btn btn-primary">See list</a>
+            <a href="{% url 'unallocated_supervisors' %}" class="btn btn-primary">See list</a>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
           <div class="card-body">
             <h5 class="card-title">Add Students</h5>
             <p class="card-text">Register new students by uploading a CSV (Comma-Separated Values) file in the Upload Module</p>
-            <a href="#" class="btn btn-primary">Add Students</a>
+            <a href="{% url 'add_students' %}" class="btn btn-primary">Add Students</a>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
           <div class="card-body">
             <h5 class="card-title">Add Supervisors</h5>
             <p class="card-text">Register new supervisors by uploading a CSV (Comma-Separated Values) file in the Upload Module</p>
-            <a href="#" class="btn btn-primary">Add Supervisors</a>
+            <a href="{% url 'add_supervisors' %}" class="btn btn-primary">Add Supervisors</a>
           </div>
         </div>
       </div>
@@ -74,18 +74,18 @@
       <div class="col">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Set Registration Deadline</h5>
+              <h5 class="card-title">Registration Deadline</h5>
               <p class="card-text">Set the deadlines to complete and submit profiles for allocation to be displayed in Students and Supervisors Dashboard</p>
-              <a href="#" class="btn btn-primary">Set Constraints</a>
+              <a href="{% url 'reg_deadline' %}" class="btn btn-primary">Set Deadline</a>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Set Supervisor Constraints</h5>
+              <h5 class="card-title">Supervisor Constraints</h5>
               <p class="card-text">Set the amount of students each supervisor can have before Allocation</p>
-              <a href="#" class="btn btn-primary">Set Constraints</a>
+              <a href="{% url 'set_constraints' %}" class="btn btn-primary">Set Constraints</a>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@
             <div class="card-body">
               <h5 class="card-title">Allocation</h5>
               <p class="card-text">Check the allocation checklist and run the allocation algorithm</p><br>
-              <a href="#" class="btn btn-primary">Begin Allocation</a>
+              <a href="{% url 'allocate' %}" class="btn btn-primary">Begin Allocation</a>
             </div>
           </div>
         </div>

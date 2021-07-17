@@ -3,4 +3,25 @@
 {% block title %}Supervisors ready for Allocation {% endblock title %}
 {% block content %}
 
+<div class="text-center mt-5 mb-5">
+    <h3>Supervisors Ready for Allocation</h3>
+</div>
+<div class="alert alert-primary mt-3 role="alert">
+    <strong>{{ mysupervisors_count }}{% if mysupervisors_count == 0 %} supervisor {% else %} supervisors {% endif %}</strong> are ready to be allocated!
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Staff Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for supervisor in mysupervisors %}
+        <tr>
+            <td>{{ supervisor.staff }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
 {% endblock %}

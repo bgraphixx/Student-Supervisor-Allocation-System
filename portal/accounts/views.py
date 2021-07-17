@@ -280,42 +280,77 @@ def add_supervisors(request):
 
 @login_required
 def reg_deadline(request):
+    if request.method == 'POST':
+            regform = RegDeadlineForm(request.POST)
+            if regform.is_valid():
+                regform.save()
+                messages.success(request,'Successfully set registration deadlines!')
+                return redirect('admin_dashboard')
+    else:
+        regform = RegDeadlineForm()
 
-    context ={}
+    context = {
+        'regform': regform
+    }
     return render(request, 'accounts/admin/reg_deadline.html', context)
 
 @login_required
 def total_students(request):
     mystudents = Students.objects.all()
+    mystudents_count = mystudents.count()
 
     context ={
-        'mystudents' : mystudents
+        'mystudents' : mystudents,
+        'mystudents_count' : mystudents_count
     }
     return render(request, 'accounts/admin/total_students.html', context)
 
 @login_required
 def total_supervisors(request):
     mysupervisors = Supervisors.objects.all()
+    mysupervisors_count = mysupervisors.count()
 
     context ={
-        'mysupervisors' : mysupervisors
+        'mysupervisors' : mysupervisors,
+        'mysupervisors_count': mysupervisors_count
     }
     return render(request, 'accounts/admin/total_supervisors.html', context)
 
 @login_required
 def unallocated_students(request):
+    mystudents = UnallocatedStudents.objects.all()
+    mystudents_count = mystudents.count()
 
-    context ={}
+    context ={
+        'mystudents' : mystudents,
+        'mystudents_count' : mystudents_count
+    }
     return render(request, 'accounts/admin/unallocated_students.html', context)
 
 @login_required
 def unallocated_supervisors(request):
+    mysupervisors = UnallocatedSupervisors.objects.all()
+    mysupervisors_count = mysupervisors.count()
 
-    context ={}
-    return render(request, 'accounts/admin/total_supervisors.html', context)
+    context ={
+        'mysupervisors' : mysupervisors,
+        'mysupervisors_count': mysupervisors_count
+    }
+
+    return render(request, 'accounts/admin/unallocated_supervisors.html', context)
 
 @login_required
-def set_contraints(request):
+def set_constraints(request):
+    if request.method == 'POST':
+        setform = SupervisorsConstraintForm(request.POST)
+        if setform.is_valid():
+            setform.save()
+            messages.success(request,'Successfully set supervisor constraints!')
+            return redirect('admin_dashboard')
+    else:
+        setform = SupervisorsConstraintForm()
 
-    context ={}
-    return render(request, 'accounts/admin/set_contraints.html', context)
+    context = {
+        'setform': setform
+    }
+    return render(request, 'accounts/admin/set_constraints.html', context)

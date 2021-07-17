@@ -1,6 +1,6 @@
 {% extends "accounts/admin/base_admin.html" %}
 {% load static %}
-{% block title %}Registration Deadline {% endblock title %}
+{% block title %}Set Supervisors Constraints {% endblock title %}
 {% block content %}
 <div class="text-center mt-5 mb-5">
     <h3>Set Deadlines for Registration</h3>
@@ -10,7 +10,7 @@
 </div>
 <form method="POST" action="">
     {% csrf_token %}
-    {{ regform }}
+    {{ setform }}
     <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
 {% endblock %}
