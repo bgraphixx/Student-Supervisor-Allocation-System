@@ -111,12 +111,12 @@ class SupervisorsConstraintForm(forms.ModelForm):
             'assist' : 'Set Constraints for Assistant Lecturers:',
         }
         widgets = {
-            'professor' : forms.NumberInput(attrs={'class': 'form-control',}),
-            'assoc_professor' : forms.NumberInput(attrs={'class': 'form-control',}),
-            'senior_lect' : forms.NumberInput(attrs={'class': 'form-control',}),
-            'lect_one' : forms.NumberInput(attrs={'class': 'form-control',}),
-            'lect_two' : forms.NumberInput(attrs={'class': 'form-control',}),
-            'assist' : forms.NumberInput(attrs={'class': 'form-control',}),
+            'professor' : forms.NumberInput(attrs={'class': 'form-control mt-2 mb-2',}),
+            'assoc_professor' : forms.NumberInput(attrs={'class': 'form-control mt-2 mb-2',}),
+            'senior_lect' : forms.NumberInput(attrs={'class': 'form-control mt-2 mb-2',}),
+            'lect_one' : forms.NumberInput(attrs={'class': 'form-control mt-2 mb-2',}),
+            'lect_two' : forms.NumberInput(attrs={'class': 'form-control mt-2 mb-2',}),
+            'assist' : forms.NumberInput(attrs={'class': 'form-control mt-2 mb-2',}),
         }
 
 class RegDeadlineForm(forms.ModelForm):
@@ -130,8 +130,8 @@ class RegDeadlineForm(forms.ModelForm):
             'allocation_result' : 'Set date to display allocation result:',
         }
         widgets = {
-            'area_of_interest' : forms.DateInput(attrs={'class': 'form-control',}),
-            'ranking' : forms.DateInput(attrs={'class': 'form-control',}),
-            'submit_profile' : forms.DateInput(attrs={'class': 'form-control',}),
-            'allocation_result' : forms.DateInput(attrs={'class': 'form-control',}),
+            'area_of_interest' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
+            'ranking' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
+            'submit_profile' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
+            'allocation_result' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
         }

@@ -13,7 +13,7 @@
     </div>
     <div class="btn-1">
             {% if areadb %}
-            <a href="{% url 'up_rank_area' %}">UPDATE</a>
+            <a href="{% url 'rank_area' %}">UPDATE</a>
             {% else %}
             <a href="{% url 'rank_area' %}">GO</a>
             {% endif %}
@@ -21,21 +21,10 @@
 </div>
 <div class="dash-items">
     <div class="option">
-        <img src="{% static '/img/icon/rank_topic_icon.png' %}">
-        <p>Rank available project supervisors</p>
-    </div>
-    <div class="btn-2">
-        <a href="#">
-            GO
-        </a>
-    </div>
-</div>
-<div class="dash-items">
-    <div class="option">
         <img src="{% static '/img/icon/profile_icon.png' %}">
         <p>Submit profile for allocation</p>
     </div>
-    <div class="btn-3"><a  href="#">GO</a></div>
+    <div class="btn-3"><a  href="{% url 'submit_profile' %}">GO</a></div>
 </div>
 <div class="dash-items">
     <div class="option">

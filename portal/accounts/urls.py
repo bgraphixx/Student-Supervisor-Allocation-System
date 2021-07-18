@@ -11,8 +11,9 @@ urlpatterns = [
     path('dashboard/student/', views.student_dashboard, name='student_dashboard'),
     path('dashboard/supervisor/', views.super_dashboard, name='super_dashboard'),
     path('rank/areaofinterest/', views.rankarea, name='rank_area'),
-    path('rank/areaofinterest/', views.updaterankarea, name='up_rank_area'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/admin/allocate/run/', views.stable_marriage, name='stablemarriage'),
+    path('profile/submit', views.submit_profile, name='submit_profile'),
 
     #admin paths
 

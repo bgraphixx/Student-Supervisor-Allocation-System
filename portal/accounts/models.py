@@ -8,12 +8,6 @@ def get_full_name(self):
 
 User.add_to_class("__str__", get_full_name)
 
-class Test(models.Model):
-    name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return str(self.name)
-
 class Profiles(models.Model):
     GENDER = (
             ('Male', 'Male'),
@@ -184,34 +178,33 @@ class StudentsAreaOfInterests(models.Model):
     class Meta:
         verbose_name_plural = 'Students Area of Interests'
 
+# class StudentRanking(models.Model):
+#     student = models.OneToOneField(Students, verbose_name=("Student Account"), on_delete=models.CASCADE, null=False)
+#     first_choice = models.ForeignKey(Supervisors, verbose_name=("First Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="first_choice")
+#     second_choice = models.ForeignKey(Supervisors, verbose_name=("Second Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="second_choice")
+#     third_choice = models.ForeignKey(Supervisors, verbose_name=("Third Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="third_choice")
+#     fourth_choice = models.ForeignKey(Supervisors, verbose_name=("Fourth Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="fourth_choice")
+#     fifth_choice = models.ForeignKey(Supervisors, verbose_name=("Fifth Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="fifth_choice")
 
-class StudentRanking(models.Model):
-    student = models.OneToOneField(Students, verbose_name=("Student Account"), on_delete=models.CASCADE, null=False)
-    first_choice = models.ForeignKey(Supervisors, verbose_name=("First Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="first_choice")
-    second_choice = models.ForeignKey(Supervisors, verbose_name=("Second Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="second_choice")
-    third_choice = models.ForeignKey(Supervisors, verbose_name=("Third Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="third_choice")
-    fourth_choice = models.ForeignKey(Supervisors, verbose_name=("Fourth Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="fourth_choice")
-    fifth_choice = models.ForeignKey(Supervisors, verbose_name=("Fifth Choice Supervisor"), on_delete=models.CASCADE, null=False, related_name="fifth_choice")
+#     class Meta:
+#         verbose_name_plural = 'Student Ranking'
 
-    class Meta:
-        verbose_name_plural = 'Student Ranking'
+#     def __str__(self):
+#         return "['"+ str(self.student) + "' , '" + str(self.first_choice) + "' , '" + str(self.second_choice) + "' , '" + str(self.third_choice) + "' , '" + str(self.fourth_choice) + "' , '" + str(self.fifth_choice) + "']"
 
-    def __str__(self):
-        return "['"+ str(self.student) + "' , '" + str(self.first_choice) + "' , '" + str(self.second_choice) + "' , '" + str(self.third_choice) + "' , '" + str(self.fourth_choice) + "' , '" + str(self.fifth_choice) + "']"
+# class SupervisorRanking(models.Model):
+#     supervisor = models.OneToOneField(Supervisors, verbose_name=("Supervisor Account"), on_delete=models.CASCADE, null=False)
+#     first_choice = models.ForeignKey(Students, verbose_name=("First Choice Student"), on_delete=models.CASCADE, null=False, related_name="first_choice")
+#     second_choice = models.ForeignKey(Students, verbose_name=("Second Choice Student"), on_delete=models.CASCADE, null=False, related_name="second_choice")
+#     third_choice = models.ForeignKey(Students, verbose_name=("Third Choice Student"), on_delete=models.CASCADE, null=False, related_name="third_choice")
+#     fourth_choice = models.ForeignKey(Students, verbose_name=("Fourth Choice Student"), on_delete=models.CASCADE, null=False, related_name="fourth_choice")
+#     fifth_choice = models.ForeignKey(Students, verbose_name=("Fifth Choice Student"), on_delete=models.CASCADE, null=False, related_name="fifth_choice")
 
-class SupervisorRanking(models.Model):
-    supervisor = models.OneToOneField(Supervisors, verbose_name=("Supervisor Account"), on_delete=models.CASCADE, null=False)
-    first_choice = models.ForeignKey(Students, verbose_name=("First Choice Student"), on_delete=models.CASCADE, null=False, related_name="first_choice")
-    second_choice = models.ForeignKey(Students, verbose_name=("Second Choice Student"), on_delete=models.CASCADE, null=False, related_name="second_choice")
-    third_choice = models.ForeignKey(Students, verbose_name=("Third Choice Student"), on_delete=models.CASCADE, null=False, related_name="third_choice")
-    fourth_choice = models.ForeignKey(Students, verbose_name=("Fourth Choice Student"), on_delete=models.CASCADE, null=False, related_name="fourth_choice")
-    fifth_choice = models.ForeignKey(Students, verbose_name=("Fifth Choice Student"), on_delete=models.CASCADE, null=False, related_name="fifth_choice")
+#     class Meta:
+#         verbose_name_plural = 'Supervisor Ranking'
 
-    class Meta:
-        verbose_name_plural = 'Supervisor Ranking'
-
-    def __str__(self):
-        return "['"+ str(self.supervisor) + "' , '" + str(self.first_choice) + "' , '" + str(self.second_choice) + "' , '" + str(self.third_choice) + "' , '" + str(self.fourth_choice) + "' , '" + str(self.fifth_choice) + "']"
+#     def __str__(self):
+#         return "['"+ str(self.supervisor) + "' , '" + str(self.first_choice) + "' , '" + str(self.second_choice) + "' , '" + str(self.third_choice) + "' , '" + str(self.fourth_choice) + "' , '" + str(self.fifth_choice) + "']"
 
 class SupervisorContraints(models.Model):
     professor = models.IntegerField(verbose_name='Professor')

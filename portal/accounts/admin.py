@@ -42,15 +42,15 @@ class AllocatedAdmin(admin.ModelAdmin):
     list_display = ("student", "supervisor") #Set display in admin to list these columns
     search_fields = ("student", "supervisor") #Create a search box to search these fields 
 
-class StudentRankingAdmin(admin.ModelAdmin):
-    ordering = ('id', )
-    list_display = ("student", "first_choice", "second_choice", "third_choice", "fourth_choice", "fifth_choice") #Set display in admin to list these columns
-    search_fields = ("student",) #Create a search box to search these fields 
+# class StudentRankingAdmin(admin.ModelAdmin):
+#     ordering = ('id', )
+#     list_display = ("student", "first_choice", "second_choice", "third_choice", "fourth_choice", "fifth_choice") #Set display in admin to list these columns
+#     search_fields = ("student",) #Create a search box to search these fields 
 
-class SupervisorRankingAdmin(admin.ModelAdmin):
-    ordering = ('id', )
-    list_display = ("supervisor", "first_choice", "second_choice", "third_choice", "fourth_choice", "fifth_choice") #Set display in admin to list these columns
-    search_fields = ("supervisor",) #Create a search box to search these fields 
+# class SupervisorRankingAdmin(admin.ModelAdmin):
+#     ordering = ('id', )
+#     list_display = ("supervisor", "first_choice", "second_choice", "third_choice", "fourth_choice", "fifth_choice") #Set display in admin to list these columns
+#     search_fields = ("supervisor",) #Create a search box to search these fields 
 
 class UnallocatedStudentsAdmin(admin.ModelAdmin):
     ordering = ('id', )
@@ -66,17 +66,21 @@ class SupervisorConstraintsAdmin(admin.ModelAdmin):
     ordering = ('id', )
     list_display = ("professor","assoc_professor", "senior_lect", "lect_one", "lect_two", "assist") #Set display in admin to list these columns
 
+class RegDeadlineAdmin(admin.ModelAdmin):
+    ordering = ('id', )
+    list_display = ('area_of_interest', 'ranking', 'submit_profile', 'allocation_result')
 
-admin.site.register(Test)
+
 admin.site.register(Profiles, ProfileAdmin)
 admin.site.register(StudentsAreaOfInterests, StudentsAreaOfInterestsAdmin)
 admin.site.register(SupervisorsAreaOfInterests, SupervisorsAreaOfInterestsAdmin)
 admin.site.register(Students, StudentsAdmin)
 admin.site.register(Supervisors, SupervisorsAdmin)
 admin.site.register(Administrators, AdministratorsAdmin)
-admin.site.register(StudentRanking, StudentRankingAdmin)
-admin.site.register(SupervisorRanking, SupervisorRankingAdmin)
+# admin.site.register(StudentRanking, StudentRankingAdmin)
+# admin.site.register(SupervisorRanking, SupervisorRankingAdmin)
 admin.site.register(UnallocatedStudents, UnallocatedStudentsAdmin)
 admin.site.register(UnallocatedSupervisors, UnallocatedSupervisorsAdmin)
 admin.site.register(Allocated, AllocatedAdmin)
 admin.site.register(SupervisorContraints, SupervisorConstraintsAdmin)
+admin.site.register(RegDeadline, RegDeadlineAdmin)

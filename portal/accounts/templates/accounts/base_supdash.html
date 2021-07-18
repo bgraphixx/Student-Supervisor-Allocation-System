@@ -22,11 +22,17 @@
                 <p><strong>Position: </strong>{{ superlevel }}</p>
                 <p><strong>Department: </strong>{{ superdepartment}}</p>
                 <p><strong>StaffNumber: </strong>{{ user.username }}</p>
-                <a href="">Edit Profile</a><br>
                 <a href="{% url 'logout' %}">Logout</a>
             </div>
         </div>
         <div class="right-pane">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        {{ message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
             {% block content %}
 
 

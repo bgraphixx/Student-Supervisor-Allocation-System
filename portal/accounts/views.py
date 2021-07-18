@@ -54,11 +54,13 @@ def usertype(request):
             elif profile.user_type == 'Supervisor':
                 group = Group.objects.get(name='Supervisors')
                 messages.success(request,'Profile Completed')
+                myuser.groups.add(group)
                 profile.user = myuser
                 profile.save()
                 return redirect('supervisor_info')
             elif profile.user_type == 'Admin':
                 group = Group.objects.get(name='Administrators')
+                myuser.groups.add(group)
                 messages.success(request, 'Profile Completed')
                 profile.user = myuser
                 profile.save()
@@ -137,7 +139,7 @@ def dashboard(request):
         return redirect('student_dashboard')
     elif myuser.groups.filter(name='Supervisors'):
         return redirect('super_dashboard')
-    else:
+    elif myuser.groups.filter(name='Administrators'):
         return redirect('admin_dashboard')
 
 @login_required
@@ -176,8 +178,11 @@ def student_dashboard(request):
 def rankarea(request):
     myuser = request.user
     if myuser.groups.filter(name='Students'):
-        mystudent = Students.objects.get(student=myuser)
-        print(mystudent)
+        try: 
+            mystudent = Students.objects.get(student=myuser)
+            StudentsAreaOfInterests.objects.get(student=mystudent).delete()
+        except:
+            print('Area of Interest record of', mystudent ,'does not exist')
         if request.method == 'POST':
             areaform = StudentsAreaOfInterestsForm(request.POST)
             if areaform.is_valid():
@@ -190,8 +195,11 @@ def rankarea(request):
             areaform = StudentsAreaOfInterestsForm()
 
     elif myuser.groups.filter(name='Supervisors'):
-        mysupervisor = Supervisors.objects.get(staff=myuser)
-        print(mysupervisor)
+        try: 
+            mysupervisor = Supervisors.objects.get(staff=myuser)
+            StudentsAreaOfInterests.objects.get(student=mysupervisor).delete()
+        except:
+            print('Area of Interest record of', mysupervisor ,'does not exist')
         if request.method == 'POST':
             areaform = SupervisorsAreaOfInterestsForm(request.POST)
             if areaform.is_valid():
@@ -211,21 +219,32 @@ def rankarea(request):
     }
     return render(request, 'accounts/rank_area.html', context)
 
-@login_required
-def updaterankarea(request, id):
+def submit_profile(request):
     myuser = request.user
-    myarearank = StudentsAreaOfInterests.objects.get(user=myuser)
-    areaform = StudentsAreaOfInterestsForm(instance=myarearank)
-    if request.method == 'POST':
-        areaform = StudentsAreaOfInterestsForm(request.POST, instance=myarearank)
-        if areaform.is_valid():
-            messages.success(request, f'Area of Interest has been updated!')
-            areaform.save()
-            return redirect('student_dashboard')
-    context = {
-        'areaform': areaform
-    }
-    return render(request, 'accounts/rank_area.html', context)
+    if myuser.groups.filter(name ='Students'):
+        mystudent = Students.objects.get(student = myuser)
+        if StudentsAreaOfInterests.objects.filter(student = mystudent).exists():
+            if UnallocatedStudents.objects.filter(student = mystudent).exists():
+                messages.success(request, f'You have already submitted your profile')
+            else:
+                addstudent = UnallocatedStudents.objects.create(student = mystudent)
+                addstudent.save()
+                messages.success(request, f'Your profile has been submitted')
+        else: 
+            messages.success(request, f'You have not set your area of interest')
+        return redirect('student_dashboard')
+    elif myuser.groups.filter(name='Supervisors'):
+        mysupervisor = Supervisors.objects.get(staff = myuser)
+        if SupervisorsAreaOfInterests.objects.filter(supervisor = mysupervisor).exists():
+            if UnallocatedSupervisors.objects.filter(supervisor = mysupervisor).exists():
+                messages.success(request, f'You have already submitted your profile')
+            else:
+                addsuper = UnallocatedSupervisors.objects.create(supervisor = mysupervisor)
+                addsuper.save()
+                messages.success(request, f'Your profile has been submitted')
+        else:
+            messages.success(request, f'You have not set your area of interest')
+        return redirect('super_dashboard')
 
 #Admin Links
 @login_required
@@ -256,31 +275,54 @@ def admin_dashboard(request):
 
 @login_required
 def allocate(request):
+    cons = SupervisorContraints.objects.all().exists()
+    reg = RegDeadline.objects.all().exists()
+    mysupervisors = UnallocatedSupervisors.objects.all()
+    mysupervisors_count = mysupervisors.count()
+    mystudents = UnallocatedStudents.objects.all()
+    mystudents_count = mystudents.count()
 
-    context ={}
+    context = {
+        'cons': cons,
+        'reg' : reg,
+        'mystudents_count': mystudents_count,
+        'mysupervisors_count': mysupervisors_count,
+    }
     return render(request, 'accounts/admin/allocate.html', context)
+
+def stable_marriage(request):
+    unsupervisors = UnallocatedSupervisors.objects.all()
+    unstudents = UnallocatedStudents.objects.all()
+
+    return redirect('allocate_results')
 
 @login_required
 def allocate_results(request):
+    results = Allocated.objects.all()
 
-    context ={}
+    context = {
+        'results': results
+    }
     return render(request, 'accounts/admin/allocate_results.html', context)
+
 
 @login_required
 def add_students(request):
 
-    context ={}
+    context = {}
     return render(request, 'accounts/admin/add_students.html', context)
 
 @login_required
 def add_supervisors(request):
 
-    context ={}
+    context = {}
     return render(request, 'accounts/admin/add_supervisors.html', context)
 
 @login_required
 def reg_deadline(request):
     if request.method == 'POST':
+            deadline = RegDeadline.objects.all()
+            deadline.delete()
             regform = RegDeadlineForm(request.POST)
             if regform.is_valid():
                 regform.save()
@@ -341,6 +383,8 @@ def unallocated_supervisors(request):
 
 @login_required
 def set_constraints(request):
+    setcons = SupervisorContraints.objects.all()
+    setcons.delete()
     if request.method == 'POST':
         setform = SupervisorsConstraintForm(request.POST)
         if setform.is_valid():

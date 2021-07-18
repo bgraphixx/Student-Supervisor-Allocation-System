@@ -2,5 +2,72 @@
 {% load static %}
 {% block title %}Start Allcation {% endblock title %}
 {% block content %}
-
+<div class="text-center mt-5 mb-5">
+    <h2>Allocation Checklist</h2>
+</div>
+<!-- success alert -->
+{% if reg == True %}
+<div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      The deadline for profile submission was set
+    </div>
+</div>
+{% else %}
+<div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+        The deadline for profile submission was  not set. Some supervisors or students may not be allocated if profiles were not submitted.<br> <a href="{% url 'reg_deadline' %}">Click here</a> to set the deadline
+    </div>
+</div>
+{% endif %}
+<!-- danger alert -->
+{% if cons == True %}
+<div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      Constraints are set for Supervisors
+    </div>
+</div>
+{% else %}
+<div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+        Constraints are not set for Supervisors. <a href="{% url 'set_constraints' %}">Click here</a> to set constraints
+    </div>
+</div>
+{% endif %}
+{% if mystudents_count > 0 %}
+<div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      {{ mystudents_count }} students are available to be allocated
+    </div>
+</div>
+{% else %}
+<div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+        No student submitted their profile for allocation. Send a reminder if the deadline is passed.
+    </div>
+</div>
+{% endif %}
+{% if mysupervisors_count > 0 %}
+<div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      {{ mysupervisors_count }} supervisors are available to be allocated
+    </div>
+</div>
+{% else %}
+<div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+        No supervisor submitted their profile for allocation. Send a reminder if the deadline is passed.
+    </div>
+</div>
+{% endif %}
+<div class="text-center">
+    <a class="btn btn-success" href="{% url 'stablemarriage' %}">Begin allocation</a>
+</div>
 {% endblock %}

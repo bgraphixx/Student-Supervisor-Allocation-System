@@ -2,5 +2,23 @@
 {% load static %}
 {% block title %}Allcation Results{% endblock title %}
 {% block content %}
-
+<div class="text-center mt-5 mb-5">
+    <h3>Allocation Results</h3>
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Student</th>
+        <th scope="col">Allocated Supervisor</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for allocate in results %}
+        <tr>
+            <td>{{ allocate.student }}</td>
+            <td>{{ allocate.supervisor }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
