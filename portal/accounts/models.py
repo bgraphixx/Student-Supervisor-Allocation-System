@@ -100,26 +100,11 @@ class Supervisors(models.Model):
 
 class SupervisorsAreaOfInterests(models.Model):
     AREAS = (
-        ('Artificial Intelligence', 'Artificial Intelligence'),
-        ('Internet of Things (IOT)', 'Internet of Things (IOT)'),
-        ('Software Engineering', 'Software Engineering'),
-        ('Computer Hardware', 'Computer Hardware'),
-        ('Algorithms', 'Algorithms'),
-        ('Cloud Computing', 'Cloud Computing'),
-        ('Networking and Communication', 'Networking and Communication'),
-        ('Data Science', 'Data Science'),
-        ('UI/UX Design','UI/UX Design'),
-        ('Human Computer Interaction (HCI)', 'Human Computer Interaction (HCI)'),
-        ('Machine Learning', 'Machine Learning'),
+        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Design and Animation','Design and Animation'),
         ('Cyber Security', 'Cyber Security'),
-        ('Information Systems','Information Systems'),
-        ('Digital / Interactive Media', 'Digital / Interactive Media'),
-        ('Game Design','Game Design'),
-        ('Computer Graphics', 'Computer Graphics'),
-        ('Web Development', 'Web Development'),
-        ('Bioinformatics','Bioinformatics'),
-        ('Database Management', 'Database Management'),
-        ('Mobile Development','Mobile Development'),
     )
     CATEGORY = (
         ('Research', 'Research'),
@@ -140,26 +125,11 @@ class SupervisorsAreaOfInterests(models.Model):
 
 class StudentsAreaOfInterests(models.Model):
     AREAS = (
-        ('Artificial Intelligence', 'Artificial Intelligence'),
-        ('Internet of Things (IOT)', 'Internet of Things (IOT)'),
-        ('Software Engineering', 'Software Engineering'),
-        ('Computer Hardware', 'Computer Hardware'),
-        ('Algorithms', 'Algorithms'),
-        ('Cloud Computing', 'Cloud Computing'),
-        ('Networking and Communication', 'Networking and Communication'),
-        ('Data Science', 'Data Science'),
-        ('UI/UX Design','UI/UX Design'),
-        ('Human Computer Interaction (HCI)', 'Human Computer Interaction (HCI)'),
-        ('Machine Learning', 'Machine Learning'),
+        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Design and Animation','Design and Animation'),
         ('Cyber Security', 'Cyber Security'),
-        ('Information Systems','Information Systems'),
-        ('Digital / Interactive Media', 'Digital / Interactive Media'),
-        ('Game Design','Game Design'),
-        ('Computer Graphics', 'Computer Graphics'),
-        ('Web Development', 'Web Development'),
-        ('Bioinformatics','Bioinformatics'),
-        ('Database Management', 'Database Management'),
-        ('Mobile Development','Mobile Development'),
     )
     CATEGORY = (
         ('Research', 'Research'),
@@ -207,12 +177,12 @@ class StudentsAreaOfInterests(models.Model):
 #         return "['"+ str(self.supervisor) + "' , '" + str(self.first_choice) + "' , '" + str(self.second_choice) + "' , '" + str(self.third_choice) + "' , '" + str(self.fourth_choice) + "' , '" + str(self.fifth_choice) + "']"
 
 class SupervisorContraints(models.Model):
-    professor = models.IntegerField(verbose_name='Professor')
-    assoc_professor = models.IntegerField(verbose_name='Associate Professor')
-    senior_lect = models.IntegerField(verbose_name='Senior Lecturer')
-    lect_one = models.IntegerField(verbose_name='Lecturer 1')
-    lect_two = models.IntegerField(verbose_name='Lecturer 2')
-    assist = models.IntegerField(verbose_name='Assistant Lecturer')
+    professor = models.IntegerField(verbose_name='Professor', null=True)
+    assoc_professor = models.IntegerField(verbose_name='Associate Professor', null=True)
+    senior_lect = models.IntegerField(verbose_name='Senior Lecturer', null=True)
+    lect_one = models.IntegerField(verbose_name='Lecturer 1', null=True)
+    lect_two = models.IntegerField(verbose_name='Lecturer 2', null=True)
+    assist = models.IntegerField(verbose_name='Assistant Lecturer', null=True)
 
     class Meta:
         verbose_name_plural = 'Supervisor Constraints'
@@ -225,18 +195,29 @@ class RegDeadline(models.Model):
     class Meta:
         verbose_name_plural = 'Registration Deadlines'
 
-class Allocated(models.Model):
-    student = models.OneToOneField(Students,  on_delete=models.CASCADE, null=False)
-    supervisor = models.ForeignKey(Supervisors, on_delete=models.CASCADE, null=False)
-
-    class Meta:
-        verbose_name_plural = 'Allocated'
-
-    def __str__(self):
-        return str(self.student) + " is allocated to " + str(self.supervisor)
-
 class UnallocatedStudents(models.Model):
+    AREAS = (
+        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Design and Animation', 'Design and Animation'),
+        ('Cyber Security', 'Cyber Security'),
+    )
+    CATEGORY = (
+        ('Research', 'Research'),
+        ('Implementation', 'Implementation'),
+        ('Research + Implementation', 'Research + Implementation'),
+    )
     student = models.OneToOneField(Students,  on_delete=models.CASCADE, null=False)
+    level = models.CharField(max_length=200,  default=None)
+    department = models.CharField(max_length=200,  default=None)
+    course = models.CharField(max_length=200,  default=None)
+    type = models.CharField(max_length=200, verbose_name=("Category of Project"), choices=CATEGORY, default=None)
+    first_choice = models.CharField(max_length=200, verbose_name=("First Choice"), choices=AREAS, default=None)
+    second_choice = models.CharField(max_length=200, verbose_name=("Second Choice"), choices=AREAS, default=None)
+    third_choice = models.CharField(max_length=200, verbose_name=("Third Choice"), choices=AREAS, default=None)
+    fourth_choice = models.CharField(max_length=200, verbose_name=("Fourth Choice"), choices=AREAS, default=None)
+    fifth_choice = models.CharField(max_length=200, verbose_name=("Fifth Choice"), choices=AREAS, default=None)
 
     class Meta:
         verbose_name_plural = 'Unallocated Students'
@@ -245,9 +226,39 @@ class UnallocatedStudents(models.Model):
         return str(self.student)
 
 class UnallocatedSupervisors(models.Model):
+    AREAS = (
+        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Design and Animation','Design and Animation'),
+        ('Cyber Security', 'Cyber Security'),
+    )
+    CATEGORY = (
+        ('Research', 'Research'),
+        ('Implementation', 'Implementation'),
+        ('Research + Implementation', 'Research + Implementation'),
+    )
     supervisor = models.OneToOneField(Supervisors, on_delete=models.CASCADE, null=False)
+    staff_level = models.CharField(max_length=200, default=None)
+    department = models.CharField(max_length=200,  default=None)
+    type = models.CharField(max_length=200, verbose_name=("Category of Project"), choices=CATEGORY, default=None)
+    first_choice = models.CharField(max_length=200, verbose_name=("First Choice"), choices=AREAS, default=None)
+    second_choice = models.CharField(max_length=200, verbose_name=("Second Choice"), choices=AREAS, default=None)
+    third_choice = models.CharField(max_length=200, verbose_name=("Third Choice"), choices=AREAS, default=None)
+    fourth_choice = models.CharField(max_length=200, verbose_name=("Fourth Choice"), choices=AREAS, default=None)
+    fifth_choice = models.CharField(max_length=200, verbose_name=("Fifth Choice"), choices=AREAS, default=None)
     class Meta:
         verbose_name_plural = 'Unallocated Supervisors'
 
     def __str__(self):
         return str(self.supervisor)
+
+class Allocated(models.Model):
+    student = models.OneToOneField(UnallocatedStudents,  on_delete=models.CASCADE, null=False)
+    supervisor = models.ForeignKey(UnallocatedSupervisors, on_delete=models.CASCADE, null=False)
+
+    class Meta:
+        verbose_name_plural = 'Allocated'
+
+    def __str__(self):
+        return str(self.student) + " is allocated to " + str(self.supervisor)
