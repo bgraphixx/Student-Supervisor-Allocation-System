@@ -64,7 +64,7 @@ class UnallocatedSupervisorsAdmin(admin.ModelAdmin):
 
 class SupervisorConstraintsAdmin(admin.ModelAdmin):
     ordering = ('id', )
-    list_display = ("professor","assoc_professor", "senior_lect", "lect_one", "lect_two", "assist") #Set display in admin to list these columns
+    list_display = ("id", "professor","assoc_professor", "senior_lect", "lect_one", "lect_two", "assist") #Set display in admin to list these columns
 
 class RegDeadlineAdmin(admin.ModelAdmin):
     ordering = ('id', )
