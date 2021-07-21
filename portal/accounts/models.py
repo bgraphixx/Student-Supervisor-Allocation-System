@@ -100,9 +100,9 @@ class Supervisors(models.Model):
 
 class SupervisorsAreaOfInterests(models.Model):
     AREAS = (
-        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
-        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
-        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication - Network Administration, Telecommunication, Cloud Computing', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
         ('Design and Animation','Design and Animation'),
         ('Cyber Security', 'Cyber Security'),
     )
@@ -125,9 +125,9 @@ class SupervisorsAreaOfInterests(models.Model):
 
 class StudentsAreaOfInterests(models.Model):
     AREAS = (
-        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
-        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
-        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication - Network Administration, Telecommunication, Cloud Computing', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
         ('Design and Animation','Design and Animation'),
         ('Cyber Security', 'Cyber Security'),
     )
@@ -197,10 +197,10 @@ class RegDeadline(models.Model):
 
 class UnallocatedStudents(models.Model):
     AREAS = (
-        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
-        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
-        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
-        ('Design and Animation', 'Design and Animation'),
+        ('Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication - Network Administration, Telecommunication, Cloud Computing', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Design and Animation','Design and Animation'),
         ('Cyber Security', 'Cyber Security'),
     )
     CATEGORY = (
@@ -227,9 +227,9 @@ class UnallocatedStudents(models.Model):
 
 class UnallocatedSupervisors(models.Model):
     AREAS = (
-        ('Artificial Intelligence', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
-        ('Systems Engineering', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
-        ('Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
+        ('Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning', 'Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning'),
+        ('Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management', 'Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management'),
+        ('Networking and Communication - Network Administration, Telecommunication, Cloud Computing', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing'),
         ('Design and Animation','Design and Animation'),
         ('Cyber Security', 'Cyber Security'),
     )
@@ -238,7 +238,7 @@ class UnallocatedSupervisors(models.Model):
         ('Implementation', 'Implementation'),
         ('Research + Implementation', 'Research + Implementation'),
     )
-    supervisor = models.OneToOneField(Supervisors, on_delete=models.CASCADE, null=False)
+    supervisor = models.OneToOneField(Supervisors,on_delete=models.CASCADE, null=False)
     staff_level = models.CharField(max_length=200, default=None)
     department = models.CharField(max_length=200,  default=None)
     type = models.CharField(max_length=200, verbose_name=("Category of Project"), choices=CATEGORY, default=None)

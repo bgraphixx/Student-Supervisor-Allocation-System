@@ -13,13 +13,27 @@
     <thead>
       <tr>
         <th scope="col">Staff Name</th>
+        <th scope="col">Staff Level</th>
+        <th scope="col">Type</th>
+        <th scope="col">First Choice</th>
+        <th scope="col">Second Choice</th>
+        <th scope="col">Third Choice</th>
+        <th scope="col">Fourth Choice</th>
+        <th scope="col">Fifth Choice</th>
       </tr>
     </thead>
     <tbody>
         {% for supervisor in mysupervisors %}
         <tr>
-            <td>{{ supervisor.staff }}</td>
-          </tr>
+            <td>{{ supervisor.supervisor }}</td>
+            <td>{{ supervisor.staff_level }}</td>
+            <td>{{ supervisor.type }}</td>
+            <td>{{ supervisor.first_choice }}</td>
+            <td>{{ supervisor.second_choice }}</td>
+            <td>{{ supervisor.third_choice }}</td>
+            <td>{{ supervisor.fourth_choice }}</td>
+            <td>{{ supervisor.fifth_choice }}</td>
+        </tr>
         {% endfor %}
     </tbody>
   </table>

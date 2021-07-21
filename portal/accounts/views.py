@@ -37,7 +37,7 @@ def signup(request):
 def profile(request):
     return render(request, 'user/profile.html')
 
-@login_required
+@login_required(login_url='login')
 def usertype(request):
     myuser = request.user
     if request.method == 'POST':
@@ -219,6 +219,7 @@ def rankarea(request):
     }
     return render(request, 'accounts/rank_area.html', context)
 
+@login_required
 def submit_profile(request):
     myuser = request.user
     if myuser.groups.filter(name ='Students'):
@@ -308,41 +309,41 @@ def stable_marriage(request):
 
     #grouping supervisors based on type and first choice
 
-    ResearchAISuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Artificial Intelligence")
-    ResearchSESuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Systems Engineering")
-    ResearchNCSuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Networking and Communication")
+    ResearchAISuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning")
+    ResearchSESuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management")
+    ResearchNCSuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing")
     ResearchDASuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Design and Animation")
     ResearchCSSuper = UnallocatedSupervisors.objects.filter(type="Research", first_choice = "Cyber Security")
 
-    ImplementAISuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Artificial Intelligence")
-    ImplementSESuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Systems Engineering")
-    ImplementNCSuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Networking and Communication")
+    ImplementAISuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning")
+    ImplementSESuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management")
+    ImplementNCSuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing")
     ImplementDASuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Design and Animation")
     ImplementCSSuper = UnallocatedSupervisors.objects.filter(type="Implementation", first_choice = "Cyber Security")
 
-    ReImpAISuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Artificial Intelligence")
-    ReImpSESuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Systems Engineering")
-    ReImpNCSuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Networking and Communication")
+    ReImpAISuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning")
+    ReImpSESuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management")
+    ReImpNCSuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing")
     ReImpDASuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Design and Animation")
     ReImpCSSuper = UnallocatedSupervisors.objects.filter(type="Research + Implementation", first_choice = "Cyber Security")
 
     #grouping students based on type and first choice
 
-    ResearchAIStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Artificial Intelligence")
-    ResearchSEStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Systems Engineering")
-    ResearchNCStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Networking and Communication")
+    ResearchAIStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning")
+    ResearchSEStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management")
+    ResearchNCStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing")
     ResearchDAStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Design and Animation")
     ResearchCSStudent = UnallocatedStudents.objects.filter(type="Research", first_choice = "Cyber Security")
 
-    ImplementAIStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Artificial Intelligence")
-    ImplementSEStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Systems Engineering")
-    ImplementNCStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Networking and Communication")
+    ImplementAIStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning")
+    ImplementSEStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management")
+    ImplementNCStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing")
     ImplementDAStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Design and Animation")
     ImplementCSStudent = UnallocatedStudents.objects.filter(type="Implementation", first_choice = "Cyber Security")
 
-    ReImpAIStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Artificial Intelligence")
-    ReImpSEStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Systems Engineering")
-    ReImpNCStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Networking and Communication")
+    ReImpAIStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Artificial Intelligence - Robotics, Data Science, Algorithm Design, Machine Learning")
+    ReImpSEStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Systems Engineering - Information Systems, Web Development, Mobile Development, Game Development, Software Development, Database Management")
+    ReImpNCStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Networking and Communication', 'Networking and Communication - Network Administration, Telecommunication, Cloud Computing")
     ReImpDAStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Design and Animation")
     ReImpCSStudent = UnallocatedStudents.objects.filter(type="Research + Implementation", first_choice = "Cyber Security")
     
@@ -353,45 +354,35 @@ def stable_marriage(request):
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Artificial Intelligence" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ResearchSESuper:
         for student in ResearchSEStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Systems Engineering" :
-                    pair(student, supervisor)
-                    student.delete()
-
+                pair(student, supervisor)
+            
     for supervisor in ResearchNCSuper:
         for student in ResearchNCStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Networking and Communication" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ResearchDASuper:
         for student in ResearchDAStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Design and Animation" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ResearchCSSuper:
         for student in ResearchCSStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Cyber Security" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
     #allocate implementation students to implement supervisors
 
     for supervisor in ImplementAISuper:
@@ -399,45 +390,35 @@ def stable_marriage(request):
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Artificial Intelligence" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ImplementSESuper:
         for student in ImplementSEStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Systems Engineering" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ImplementNCSuper:
         for student in ImplementNCStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Networking and Communication" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ImplementDASuper:
         for student in ImplementDAStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Design and Animation" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ImplementCSSuper:
         for student in ImplementCSStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Cyber Security" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     #allocate research + implement students to research + implement supervisors
 
@@ -446,45 +427,35 @@ def stable_marriage(request):
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Artificial Intelligence" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ReImpSESuper:
         for student in ReImpSEStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Systems Engineering" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ReImpNCSuper:
         for student in ReImpNCStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Networking and Communication" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ReImpDASuper:
         for student in ReImpDAStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Design and Animation" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
 
     for supervisor in ReImpCSSuper:
         for student in ReImpCSStudent:
             if checkpair(student) == True:
                 continue
             else:
-                if student.first_choice == "Cyber Security" :
-                    pair(student, supervisor)
-                    student.delete()
+                pair(student, supervisor)
     
     return redirect('allocate_results')
 

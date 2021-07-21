@@ -12,12 +12,26 @@
     <thead>
       <tr>
         <th scope="col">Student Name</th>
+        <th scope="col">Level</th>
+        <th scope="col">Type</th>
+        <th scope="col">First Choice</th>
+        <th scope="col">Second Choice</th>
+        <th scope="col">Third Choice</th>
+        <th scope="col">Fourth Choice</th>
+        <th scope="col">Fifth Choice</th>
       </tr>
     </thead>
     <tbody>
         {% for student  in mystudents %}
         <tr>
             <td>{{ student.student }}</td>
+            <td>{{ student.level }}</td>
+            <td>{{ supervisor.type }}</td>
+            <td>{{ student.first_choice }}</td>
+            <td>{{ student.second_choice }}</td>
+            <td>{{ student.third_choice }}</td>
+            <td>{{ student.fourth_choice }}</td>
+            <td>{{ student.fifth_choice }}</td>
           </tr>
         {% endfor %}
     </tbody>
