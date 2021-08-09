@@ -572,7 +572,7 @@ def reg_deadline(request):
                 area = request.POST.get('area_of_interest')
                 submit = request.POST.get('submit_profile')
                 allocation = request.POST.get('allocation_result')
-                data = RegDeadline(id=stid, area_of_interest = area, submit_profile = submit, allocation_result = allocation)
+                data = SupervisorContraints(id=stid, area_of_interest = area, submit_profile = submit, allocation_result = allocation)
                 data.save()
                 messages.success(request,'Successfully set registration deadlines!')
                 return redirect('admin_dashboard')

@@ -21,4 +21,38 @@
         {% endfor %}
     </tbody>
   </table>
+<div class="text-center mt-5 mb-5">
+    <h3>Students without match</h3>
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Student</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for stud in unmatchstud %}
+        <tr>
+            <td>{{ stud }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+<div class="text-center mt-5 mb-5">
+    <h3>Supervisors without any allocation</h3>
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Supervisor</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for super in unmatchsuper %}
+        <tr>
+            <td>{{ super }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

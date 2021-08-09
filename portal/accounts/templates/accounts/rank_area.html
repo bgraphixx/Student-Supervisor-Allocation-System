@@ -3,6 +3,7 @@
 {% block title %}Rank Project Topic Area of Interest{% endblock title %}
 {% block content %}
 <div>
+    <p>You can't repeat choices. Let each choices differ</p>
     <form action="" method="POST" class="myform">
         {% csrf_token %}
         {{ areaform }}

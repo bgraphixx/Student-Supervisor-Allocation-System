@@ -54,12 +54,12 @@ class AllocatedAdmin(admin.ModelAdmin):
 
 class UnallocatedStudentsAdmin(admin.ModelAdmin):
     ordering = ('id', )
-    list_display = ("student", "level", "department", "course") #Set display in admin to list these columns
+    list_display = ("student", "level", "department", "course", "type", "first_choice","second_choice","third_choice","fourth_choice","fifth_choice") #Set display in admin to list these columns
     search_fields = ("student", ) #Create a search box to search these fields 
 
 class UnallocatedSupervisorsAdmin(admin.ModelAdmin):
     ordering = ('id', )
-    list_display = ("supervisor", "staff_level", "department" ) #Set display in admin to list these columns
+    list_display = ("supervisor", "staff_level", "department","type", "first_choice","second_choice","third_choice","fourth_choice","fifth_choice" ) #Set display in admin to list these columns
     search_fields = ("supervisor", ) #Create a search box to search these fields 
 
 class SupervisorConstraintsAdmin(admin.ModelAdmin):
@@ -68,7 +68,7 @@ class SupervisorConstraintsAdmin(admin.ModelAdmin):
 
 class RegDeadlineAdmin(admin.ModelAdmin):
     ordering = ('id', )
-    list_display = ('area_of_interest', 'ranking', 'submit_profile', 'allocation_result')
+    list_display = ('area_of_interest', 'submit_profile', 'allocation_result')
 
 
 admin.site.register(Profiles, ProfileAdmin)

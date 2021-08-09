@@ -23,7 +23,7 @@ class StudentsAreaOfInterestsForm(ModelForm):
         model = StudentsAreaOfInterests
         fields = ('type', 'first_choice', 'second_choice', 'third_choice', 'fourth_choice', 'fifth_choice')
         labels = {
-            'type' : 'What kind of project do you preferred?',
+            'type' : 'What kind of project do you prefer?',
             'first_choice' : 'First Choice Project Area',
             'second_choice' : 'Second Choice Project Area',
             'third_choice' : 'Third Choice Project Area',
@@ -36,7 +36,7 @@ class SupervisorsAreaOfInterestsForm(ModelForm):
         model = SupervisorsAreaOfInterests
         fields = ('type', 'first_choice', 'second_choice', 'third_choice', 'fourth_choice', 'fifth_choice')
         labels = {
-            'type' : 'What kind of project do you preferred?',
+            'type' : 'What kind of project do you prefer?',
             'first_choice' : 'First Choice Project Area',
             'second_choice' : 'Second Choice Project Area',
             'third_choice' : 'Third Choice Project Area',
@@ -122,16 +122,14 @@ class SupervisorsConstraintForm(forms.ModelForm):
 class RegDeadlineForm(forms.ModelForm):
     class Meta: 
         model = RegDeadline
-        fields = ('area_of_interest','ranking', 'submit_profile', 'allocation_result')
+        fields = ('area_of_interest', 'submit_profile', 'allocation_result')
         labels = {
             'area_of_interest' : 'Set deadline for Area of Interest:',
-            'ranking' : 'Set deadline for Ranking:',
             'submit_profile' : 'Set deadline for Submitting profile:',
             'allocation_result' : 'Set date to display allocation result:',
         }
         widgets = {
             'area_of_interest' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
-            'ranking' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
             'submit_profile' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
             'allocation_result' : forms.DateInput(attrs={'class': 'form-control mt-2 mb-2', 'type':'date'}),
         }
